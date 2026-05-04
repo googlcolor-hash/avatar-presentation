@@ -8,98 +8,22 @@
     :root{--bg:#1f2733;--panel:#263241;--text:#d7e3f4;--muted:#9ab0ca;--line:#3a4a61}
     *{box-sizing:border-box}
     body{margin:0;background:#1f2733;color:var(--text);font-family:Segoe UI,system-ui,sans-serif}
-    .w{max-width:1120px;margin:0 auto;padding:14px}
+    .w{max-width:1280px;margin:0 auto;padding:14px}
     .nav{display:flex;gap:8px;flex-wrap:wrap}
     .btn{font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);text-decoration:none}
     h1{font-size:22px;margin:12px 0 6px}
     .m{font-size:13px;color:var(--muted);margin:0 0 10px}
-    .sheet{background:#f1eee6;color:#2d2d2d;border-radius:8px;padding:10px;box-shadow:0 14px 40px rgba(0,0,0,.25)}
-    svg{width:100%;height:auto;display:block;background:#f7f4ed;border-radius:6px}
-    .caption{font-size:12px;color:#6a6258;margin-top:8px}
+    .frame{background:#171e29;border:1px solid var(--line);border-radius:8px;padding:8px}
+    .frame img{width:100%;height:auto;display:block;border-radius:6px;background:#f2eee6}
   </style>
 </head>
 <body>
 <main class="w">
   <nav class="nav"><a class="btn" href="./index.html">1. Обзор</a><a class="btn" href="./page-2-concept.html">2. План сезона</a><a class="btn" href="./page-3-reference.html">3. Журнал</a><a class="btn" href="./page-4-certificate.html">4. Сертификат</a><a class="btn" href="./page-5-social-sketch.html">5. Эскиз соцсети</a><a class="btn" href="./page-6-participant-sketch.html">6. Примечания</a><a class="btn" href="./page-7-international-practice.html">7. Международная практика</a><a class="btn" href="./page-8-kabinka-plan.html">8. Кабинка</a><a class="btn" href="./page-9-booth-sketch.html">9. Эскиз кабинки</a></nav>
   <h1>Кабинка в торговом центре</h1>
-  <p class="m">Схематический карандашный эскиз: внешний вид, план, габариты и пользовательский процесс.</p>
-  <section class="sheet">
-    <svg viewBox="0 0 1180 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Карандашный эскиз кабинки Аватар в торговом центре">
-      <defs>
-        <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4"/></filter>
-        <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 8 L8 0" stroke="#8b877e" stroke-width="0.7" opacity=".35"/></pattern>
-        <style>
-          .p{fill:none;stroke:#4d4a45;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:url(#rough)}
-          .t{font:18px Segoe UI, sans-serif;fill:#47433f}
-          .s{font:14px Segoe UI, sans-serif;fill:#5c5750}
-          .xs{font:12px Segoe UI, sans-serif;fill:#665f57}
-        </style>
-      </defs>
-      <rect width="1180" height="720" fill="#f7f4ed"/>
-      <path class="p" d="M30 495 C210 455 360 455 545 500 C700 540 900 545 1150 500"/>
-      <path class="p" d="M60 150 H1090 M90 210 H1060 M120 270 H1030"/>
-      <path class="p" d="M78 150 V500 M235 150 V465 M990 150 V505"/>
-      <text class="t" x="42" y="42">Кабинка «АВАТАР» для ТЦ</text>
-      <text class="s" x="42" y="72">Фотография лица -> согласие -> сертификат регистрации -> запуск цифрового аватара</text>
-
-      <path class="p" d="M425 155 C420 118 445 96 485 92 H670 C710 94 730 118 725 155 V615 C725 646 705 665 670 668 H485 C450 665 428 646 425 615 Z" fill="#fffdf7"/>
-      <path class="p" d="M455 185 H685 V620 H455 Z" fill="url(#hatch)" opacity=".5"/>
-      <path class="p" d="M482 215 H635 C654 215 666 227 666 246 V574 H482 Z" fill="#f5f2ea"/>
-      <path class="p" d="M512 260 H640 V418 H512 Z"/>
-      <path class="p" d="M548 286 C570 260 604 260 626 286 C648 315 638 360 586 389 C534 360 526 315 548 286 Z"/>
-      <circle class="p" cx="570" cy="318" r="5"/>
-      <circle class="p" cx="604" cy="318" r="5"/>
-      <path class="p" d="M568 350 C582 360 598 360 612 350"/>
-      <path class="p" d="M532 455 H623 V495 H532 Z"/>
-      <text class="xs" x="548" y="479">СМОТРИ</text>
-      <path class="p" d="M530 540 C560 526 600 526 630 540"/>
-      <path class="p" d="M548 542 H612 V598 H548 Z"/>
-      <text class="t" x="516" y="145">АВАТАР</text>
-      <text class="xs" x="494" y="168">создай цифровой образ</text>
-
-      <path class="p" d="M690 210 H800 V585" opacity=".85"/>
-      <path class="p" d="M690 238 H770 V398 H690 Z" fill="#fffdf7"/>
-      <text class="xs" x="704" y="270">экран согласия</text>
-      <text class="xs" x="704" y="294">QR сертификат</text>
-      <circle class="p" cx="734" cy="448" r="34"/>
-      <circle class="p" cx="734" cy="448" r="13"/>
-      <path class="p" d="M704 493 H766"/>
-      <text class="xs" x="676" y="532">камера и свет на боковой</text>
-      <text class="xs" x="682" y="550">толстой стене кабинки</text>
-
-      <path class="p" d="M130 500 H300 V650 H130 Z"/>
-      <path class="p" d="M150 520 H280 V628 H150 Z"/>
-      <circle class="p" cx="216" cy="574" r="28"/>
-      <text class="t" x="130" y="475">План сверху</text>
-      <text class="xs" x="130" y="680">пример: 1.2 x 1.2 м</text>
-
-      <path class="p" d="M850 150 H985 V390 H850 Z" fill="#fffdf7"/>
-      <path class="p" d="M870 175 H965 V358 H870 Z"/>
-      <path class="p" d="M896 205 C915 181 944 181 960 207 C975 237 956 280 919 306 C880 280 874 237 896 205 Z"/>
-      <circle class="p" cx="911" cy="232" r="4"/>
-      <circle class="p" cx="939" cy="232" r="4"/>
-      <path class="p" d="M908 262 C920 271 934 271 946 262"/>
-      <text class="xs" x="879" y="342">рекламный аватар</text>
-      <text class="t" x="850" y="124">Фасад</text>
-      <path class="p" d="M1015 150 H1095 V390 H1015 Z"/>
-      <path class="p" d="M1030 225 H1080 V330 H1030 Z"/>
-      <text class="t" x="1015" y="124">Бок</text>
-      <path class="p" d="M842 405 H1100 M842 405 V396 M1100 405 V396"/>
-      <text class="xs" x="930" y="428">ширина 1200</text>
-      <path class="p" d="M825 150 V390 M825 150 H815 M825 390 H815"/>
-      <text class="xs" x="760" y="276">высота 2300</text>
-
-      <text class="t" x="830" y="485">Внутри</text>
-      <text class="s" x="830" y="515">камера + мягкий свет на боковой стене</text>
-      <text class="s" x="830" y="540">экран согласия у входа</text>
-      <text class="s" x="830" y="565">QR / PDF сертификат после съемки</text>
-      <text class="s" x="830" y="590">вентиляция, сеть, сервисный люк</text>
-
-      <text class="t" x="42" y="130">Сценарий</text>
-      <path class="p" d="M42 148 C110 138 174 140 238 150" opacity=".45"/>
-      <text class="s" x="42" y="168">подошел -> согласие -> фас / профиль / 3/4 -> сертификат</text>
-    </svg>
-    <div class="caption">Черновой эскиз для обсуждения внешнего вида, габаритов и состава кабинки.</div>
+  <p class="m">Рабочий карандашный эскиз кабинки: общий вид, план, габариты, технические требования и пользовательский процесс.</p>
+  <section class="frame">
+    <img src="./assets/avatar-booth-pencil-sketch.png" alt="Карандашный эскиз кабинки Аватар в торговом центре">
   </section>
 </main>
 </body>
