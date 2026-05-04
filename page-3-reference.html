@@ -76,7 +76,7 @@ function render(){document.getElementById('nowList').innerHTML=get('now').map((x
 function openCommentIssue(){
   const title=document.getElementById('commentTitle').value.trim()||'Комментарий участника';
   const body=document.getElementById('commentBody').value.trim()||'Комментарий оставлен со страницы проекта.';
-  const url='https://github.com/googlcolor-hash/avatar-presentation/issues/new?template=comment.yml&title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);
+  const url='https://github.com/googlcolor-hash/avatar-presentation/issues/new?labels=comment&title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);
   window.open(url,'_blank');
 }
 render();
