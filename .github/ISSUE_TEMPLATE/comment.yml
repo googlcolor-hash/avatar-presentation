@@ -1,0 +1,38 @@
+name: Комментарий участника
+description: Комментарий, замечание или предложение по проекту Аватар
+title: "[Комментарий] "
+labels: ["comment"]
+body:
+  - type: input
+    id: author
+    attributes:
+      label: Автор
+      description: Имя участника или рабочий ник
+      placeholder: Например, Сергеон
+    validations:
+      required: false
+  - type: textarea
+    id: comment
+    attributes:
+      label: Комментарий
+      description: Что нужно поправить, добавить или обсудить
+      placeholder: Напишите комментарий по проекту
+    validations:
+      required: true
+  - type: dropdown
+    id: section
+    attributes:
+      label: Раздел
+      options:
+        - Обзор
+        - План сезона
+        - Журнал
+        - Сертификат
+        - Соцсеть
+        - Международная практика
+        - Кабинка
+        - Другое
+    validations:
+      required: false
+*** Add File: C:\Users\Admin\Documents\Playground\projects\sotvorenie_mira\avatar-presentation-github\.github\ISSUE_TEMPLATE\config.yml
+blank_issues_enabled: true
