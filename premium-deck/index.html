@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аватар — проектная презентация</title>
+  <style>
+    :root {
+      --bg: #202832;
+      --panel: #2a3440;
+      --panel2: #313d4b;
+      --text: #dfe8f3;
+      --muted: #9fb0c3;
+      --line: #435164;
+      --accent: #7fb2ff;
+      --good: #8bd6a3;
+      --warn: #e7c36a;
+      --paper: #f1eee6;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #151b23;
+      color: var(--text);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      letter-spacing: 0;
+    }
+
+    .deck {
+      width: 100%;
+      background: #151b23;
+    }
+
+    .slide {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto 18px;
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,0)),
+        radial-gradient(900px 520px at 85% 8%, rgba(127,178,255,.10), transparent 64%),
+        var(--bg);
+      page-break-after: always;
+    }
+
+    .slide::after {
+      content: attr(data-n);
+      position: absolute;
+      right: 42px;
+      bottom: 28px;
+      color: #73849a;
+      font-size: 13px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: 50px; line-height: 1.05; max-width: 900px; font-weight: 720; }
+    h2 { font-size: 34px; line-height: 1.12; font-weight: 680; margin-bottom: 20px; }
+    h3 { font-size: 18px; line-height: 1.2; font-weight: 680; margin-bottom: 8px; }
+    p, li { font-size: 20px; line-height: 1.42; color: #cbd7e5; }
+    ul { padding-left: 24px; margin: 0; }
+    li { margin: 8px 0; }
+    .muted { color: var(--muted); }
+    .small { font-size: 15px; line-height: 1.35; }
+    .kicker { color: var(--accent); font-size: 16px; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; }
+    .claim { font-size: 26px; color: #eef4fb; line-height: 1.24; max-width: 780px; margin-top: 18px; }
+    .footer { position: absolute; left: 42px; bottom: 28px; color: #73849a; font-size: 13px; }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .card {
+      background: rgba(42,52,64,.92);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .card p, .card li { font-size: 17px; }
+    .metric { font-size: 42px; font-weight: 760; color: #f0f5fc; line-height: 1; }
+    .label { font-size: 14px; color: var(--muted); margin-top: 8px; }
+
+    .path {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .step {
+      min-height: 176px;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+    }
+    .num { color: var(--accent); font-weight: 800; margin-bottom: 12px; }
+
+    .image-frame {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #111820;
+      padding: 8px;
+    }
+    .image-frame img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 6px; background: var(--paper); }
+    .booth-img { height: 470px; }
+
+    .timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 28px; }
+    .phase { min-height: 210px; border-left: 4px solid var(--accent); padding: 14px; background: var(--panel); border-radius: 0 8px 8px 0; }
+    .phase b { display: block; font-size: 16px; color: #edf4ff; margin-bottom: 10px; }
+    .phase span { display: block; color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+    .phase p { font-size: 16px; }
+
+    .wire {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #222b36;
+      padding: 16px;
+      height: 470px;
+    }
+    .phone { width: 250px; height: 430px; border: 2px solid #5b6a7e; border-radius: 26px; margin: 0 auto; padding: 14px; background: #151d26; }
+    .video { height: 250px; border-radius: 14px; background: linear-gradient(160deg, #4b6178, #222b36); margin-bottom: 12px; position: relative; }
+    .video::after { content: "▶"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 42px; color: #edf4ff; opacity: .65; }
+    .bar { height: 12px; border-radius: 8px; background: #607185; margin: 8px 0; }
+    .bar.short { width: 65%; }
+
+    .diagram {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 28px;
+    }
+    .node { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; min-height: 170px; }
+    .node h3 { color: #f2f6fb; }
+    .node p { font-size: 16px; }
+    .tag { display: inline-block; color: var(--good); border: 1px solid rgba(139,214,163,.35); border-radius: 999px; padding: 5px 10px; font-size: 13px; margin-top: 10px; }
+
+    .split { display: grid; grid-template-columns: .9fr 1.1fr; gap: 24px; align-items: center; }
+    .quote { font-size: 30px; line-height: 1.22; color: #f0f5fb; }
+    .caption { font-size: 14px; color: var(--muted); margin-top: 10px; }
+    .risk { border-left: 4px solid var(--warn); }
+
+    @media screen and (max-width: 900px) {
+      .slide { width: 100%; height: auto; min-height: 100vh; margin-bottom: 10px; padding: 22px; }
+      h1 { font-size: 34px; }
+      h2 { font-size: 27px; }
+      p, li { font-size: 17px; }
+      .grid2, .grid3, .grid4, .path, .timeline, .diagram, .split { grid-template-columns: 1fr; }
+      .booth-img, .wire { height: auto; }
+      .phone { width: min(250px, 100%); }
+    }
+
+    @media print {
+      @page { size: 16in 9in; margin: 0; }
+      body { background: var(--bg); }
+      .slide { margin: 0; width: 16in; height: 9in; page-break-after: always; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+<main class="deck">
+  <section class="slide" data-n="01">
+    <div class="kicker">Проектная презентация</div>
+    <h1>Аватар</h1>
+    <p class="claim">Социальная платформа, где человек регистрирует лицо, создает цифровой образ, публикует видео, участвует в конкурсе и выходит к стадионному финалу.</p>
+    <div class="path">
+      <div class="step"><div class="num">01</div><h3>Кабинка</h3><p>Регистрация лица и выдача сертификата.</p></div>
+      <div class="step"><div class="num">02</div><h3>Аватар</h3><p>Создание управляемого цифрового образа.</p></div>
+      <div class="step"><div class="num">03</div><h3>Видео</h3><p>Публикации в социальной галерее.</p></div>
+      <div class="step"><div class="num">04</div><h3>Конкурс</h3><p>Отбор лучших участников сезона.</p></div>
+      <div class="step"><div class="num">05</div><h3>Стадион</h3><p>Финальное выступление и приз.</p></div>
+    </div>
+    <div class="footer">Версия для согласования · 22.05.2026</div>
+  </section>
+
+  <section class="slide" data-n="02">
+    <div class="kicker">Суть</div>
+    <h2>Мы собираем не генератор картинок, а полный контур участия</h2>
+    <div class="grid3">
+      <div class="card"><div class="metric">1</div><div class="label">публичная точка входа</div><p>Кабинка в ТЦ фиксирует регистрацию и делает процесс понятным для человека.</p></div>
+      <div class="card"><div class="metric">365</div><div class="label">дней сезона</div><p>Путь от запуска до финала строится как понятный годовой конкурс.</p></div>
+      <div class="card"><div class="metric">3</div><div class="label">главных слоя</div><p>Лицо и права, социальный контент, финальное шоу.</p></div>
+    </div>
+    <p class="claim">Главная ценность проекта: человек получает защищенный цифровой образ, а команда получает управляемую медийную механику.</p>
+  </section>
+
+  <section class="slide" data-n="03">
+    <div class="kicker">Путь пользователя</div>
+    <h2>Один сценарий, без разрывов</h2>
+    <div class="diagram">
+      <div class="node"><h3>1. Регистрация</h3><p>Фото в кабинке, подтверждение согласия, сертификат лица.</p><span class="tag">доверие</span></div>
+      <div class="node"><h3>2. Участие</h3><p>Профиль аватара, ролики, челленджи, рейтинг, комментарии.</p><span class="tag">активность</span></div>
+      <div class="node"><h3>3. Финал</h3><p>Shortlist, подготовка номера, стадионное выступление, приз.</p><span class="tag">событие</span></div>
+    </div>
+    <div class="card" style="margin-top:28px"><p>Такой путь проще объяснять партнерам: он начинается в физической локации, продолжается в соцсети и заканчивается большим событием.</p></div>
+  </section>
+
+  <section class="slide" data-n="04">
+    <div class="kicker">Кабинка</div>
+    <h2>Физическая точка входа делает проект ощутимым</h2>
+    <div class="split">
+      <div>
+        <p class="quote">Кабинка нужна не для красоты. Она превращает регистрацию лица в понятный ритуал и юридически фиксируемое действие.</p>
+        <ul style="margin-top:22px">
+          <li>фото: фас, профиль, три четверти</li>
+          <li>экран согласия и выдача сертификата</li>
+          <li>установка в ТЦ и других потоковых местах</li>
+        </ul>
+      </div>
+      <div class="image-frame booth-img"><img src="../assets/avatar-booth-pencil-sketch.png" alt="Эскиз кабинки Аватар"></div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="05">
+    <div class="kicker">Сертификат</div>
+    <h2>Документ регистрации лица — главный элемент доверия</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Что фиксируем</h3>
+        <ul>
+          <li>ID регистрации</li>
+          <li>дату и срок действия</li>
+          <li>scope согласия</li>
+          <li>статус: активен / отозван</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Что прикладываем</h3>
+        <ul>
+          <li>фото-пакет: фас, профиль, 3/4</li>
+          <li>маскированные документы</li>
+          <li>QR-проверку подлинности</li>
+          <li>журнал действий</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card risk" style="margin-top:24px"><p>Риск проекта не в “использовании лица”, а в обходе или подделке подтверждения. Поэтому сертификат должен быть частью продукта с первого MVP.</p></div>
+  </section>
+
+  <section class="slide" data-n="06">
+    <div class="kicker">Социальная сеть</div>
+    <h2>Лента должна быть ближе к TikTok/Instagram, но с конкурсной логикой</h2>
+    <div class="split">
+      <div class="wire">
+        <div class="phone">
+          <div class="video"></div>
+          <div class="bar"></div>
+          <div class="bar short"></div>
+          <div class="bar"></div>
+          <p class="small muted">#мойаватар · раунд 3 · в shortlist</p>
+        </div>
+      </div>
+      <div>
+        <ul>
+          <li>короткие видео с аватаром</li>
+          <li>профиль участника и история роликов</li>
+          <li>рейтинги, shortlist, этапы конкурса</li>
+          <li>комментарии и задачи команды отдельно от публичной ленты</li>
+        </ul>
+        <p class="claim">Соцсеть должна не просто хранить ролики, а подталкивать человека к участию в сезоне.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="07">
+    <div class="kicker">Конкурс</div>
+    <h2>Конкурс превращает аватары в сезонную драматургию</h2>
+    <div class="grid4">
+      <div class="card"><h3>Раунды</h3><p>Регулярные этапы с темами, дедлайнами и видимым прогрессом.</p></div>
+      <div class="card"><h3>Рейтинг</h3><p>Публичная метрика участия, без скрытой магии отбора.</p></div>
+      <div class="card"><h3>Жюри</h3><p>Финальный фильтр качества и репутации проекта.</p></div>
+      <div class="card"><h3>Shortlist</h3><p>Список тех, кто готовится к стадионному финалу.</p></div>
+    </div>
+    <p class="claim">Важно заранее решить: кто голосует, как считается победитель, где роль спонсора, что считается нарушением.</p>
+  </section>
+
+  <section class="slide" data-n="08">
+    <div class="kicker">Стадион</div>
+    <h2>Финал через год — публичное доказательство масштаба</h2>
+    <div class="grid3">
+      <div class="card"><h3>Событие</h3><p>Аватары выступают как цифровые участники шоу.</p></div>
+      <div class="card"><h3>Приз</h3><p>Победитель получает крупную сумму через спонсорский контур.</p></div>
+      <div class="card"><h3>Медиа</h3><p>Финал дает контент для следующего цикла проекта.</p></div>
+    </div>
+    <div class="card" style="margin-top:28px"><p>Стадион не должен появляться как фантазия в конце. Он должен быть заложен в продуктовую механику с первого дня: календарь, отбор, права, партнеры, контент.</p></div>
+  </section>
+
+  <section class="slide" data-n="09">
+    <div class="kicker">Годовой план</div>
+    <h2>Сезон от 1 мая 2026 до мая 2027</h2>
+    <div class="timeline">
+      <div class="phase"><b>01.05-30.06</b><span>Этап 1</span><p>Пилот кабинок, регистрация лиц, первые сертификаты.</p></div>
+      <div class="phase"><b>01.07-31.10</b><span>Этап 2</span><p>Соцсеть, публикации, рост галереи, первые челленджи.</p></div>
+      <div class="phase"><b>01.11-28.02</b><span>Этап 3</span><p>Конкурсные раунды, рейтинг, shortlist.</p></div>
+      <div class="phase"><b>01.03-30.04</b><span>Этап 4</span><p>Подготовка финального шоу и партнерского блока.</p></div>
+      <div class="phase"><b>Май 2027</b><span>Финал</span><p>Стадионное выступление, победитель, приз.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="10">
+    <div class="kicker">Команда</div>
+    <h2>Состав участников фиксируем просто, роли уточняем отдельно</h2>
+    <div class="grid4">
+      <div class="card"><h3>Сергеон</h3><p class="muted">Участник проекта</p></div>
+      <div class="card"><h3>Алексей</h3><p class="muted">Участник проекта</p></div>
+      <div class="card"><h3>Игорь</h3><p class="muted">Участник проекта</p></div>
+      <div class="card"><h3>Иван</h3><p class="muted">Участник проекта</p></div>
+    </div>
+    <div class="grid3" style="margin-top:22px">
+      <div class="card"><h3>Журнал</h3><p>Что делается сейчас, что сделано, следующие шаги.</p></div>
+      <div class="card"><h3>Комментарии</h3><p>Сохраняются через GitHub Issues, чтобы не терялись между встречами.</p></div>
+      <div class="card"><h3>Версии</h3><p>Базовая версия уже зафиксирована тегом, новые правки идут отдельно.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="11">
+    <div class="kicker">Что нужно решить</div>
+    <h2>Открытые решения перед следующим этапом</h2>
+    <div class="grid2">
+      <div class="card"><h3>Продукт</h3><ul><li>какой первый формат видео</li><li>какие правила конкурса</li><li>как выглядит профиль участника</li></ul></div>
+      <div class="card"><h3>Юридический контур</h3><ul><li>scope согласия</li><li>отзыв и деактивация</li><li>хранение и аудит</li></ul></div>
+      <div class="card"><h3>Кабинка</h3><ul><li>минимальная комплектация</li><li>место установки</li><li>операторский сценарий</li></ul></div>
+      <div class="card"><h3>Партнеры</h3><ul><li>призовой фонд</li><li>роль банков/спонсоров</li><li>публичная отчетность</li></ul></div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="12">
+    <div class="kicker">Следующее действие</div>
+    <h2>Первый рабочий MVP должен доказать цепочку</h2>
+    <div class="path">
+      <div class="step"><div class="num">A</div><h3>Согласие</h3><p>Форма и scope.</p></div>
+      <div class="step"><div class="num">B</div><h3>Сертификат</h3><p>PDF/QR и проверка.</p></div>
+      <div class="step"><div class="num">C</div><h3>Аватар</h3><p>Профиль и ролик.</p></div>
+      <div class="step"><div class="num">D</div><h3>Конкурс</h3><p>Рейтинг и shortlist.</p></div>
+      <div class="step"><div class="num">E</div><h3>Журнал</h3><p>Комментарии и задачи.</p></div>
+    </div>
+    <p class="claim">Definition of Done для следующей версии: один человек проходит путь от регистрации до опубликованного ролика и записи в конкурсный журнал.</p>
+  </section>
+</main>
+</body>
+</html>
