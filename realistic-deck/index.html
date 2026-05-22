@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аватар — реалистичная презентация</title>
+  <style>
+    :root {
+      --bg: #070a0f;
+      --graphite: #111821;
+      --panel: rgba(16, 24, 33, .86);
+      --panel-2: rgba(255, 255, 255, .055);
+      --line: rgba(217, 229, 241, .14);
+      --ink: #f4f7fa;
+      --text: #d8e1ea;
+      --muted: #8fa1b2;
+      --accent: #4cc9f0;
+      --accent-2: #c9a86a;
+      --ok: #7ee2a8;
+      --warn: #f0c36a;
+      --danger: #f07c7c;
+      --shadow: 0 26px 80px rgba(0,0,0,.44);
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--bg); }
+    body { margin: 0; color: var(--ink); background: var(--bg); font-family: "Aptos", "Segoe UI", Tahoma, sans-serif; letter-spacing: -.012em; }
+    .slide {
+      position: relative; width: 1280px; height: 720px; margin: 0 auto 18px; padding: 34px 40px;
+      overflow: hidden; isolation: isolate; page-break-after: always;
+      background:
+        radial-gradient(900px 520px at 84% 10%, rgba(76,201,240,.11), transparent 62%),
+        radial-gradient(520px 360px at 8% 88%, rgba(201,168,106,.10), transparent 68%),
+        linear-gradient(135deg, #080c13, #111923 52%, #070a0f);
+    }
+    .slide::before { content:""; position:absolute; inset:0; z-index:-2; opacity:.19; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 56px 56px; mask-image: linear-gradient(110deg, transparent 0%, black 18%, black 74%, transparent 100%); }
+    .slide::after { content: attr(data-n); position:absolute; right:32px; bottom:20px; color:rgba(255,255,255,.36); font-size:12px; }
+    h1,h2,h3,p { margin:0; }
+    h1 { font-size: 58px; line-height: .98; letter-spacing: -.052em; font-weight: 760; max-width: 840px; }
+    h2 { font-size: 30px; line-height: 1.12; letter-spacing: -.035em; font-weight: 720; margin-bottom: 14px; }
+    h3 { font-size: 18px; line-height: 1.18; margin-bottom: 7px; font-weight: 680; }
+    p,li { font-size: 16px; line-height: 1.36; color: var(--text); }
+    ul { margin:0; padding-left:20px; }
+    li { margin:5px 0; }
+    img { display:block; width:100%; height:100%; object-fit:cover; }
+    a { color: var(--accent); text-decoration: none; }
+    .kicker { color: var(--accent); font-size:12px; text-transform:uppercase; letter-spacing:.16em; font-weight:800; margin-bottom:12px; }
+    .lead { font-size:22px; line-height:1.28; max-width:760px; color:#eef4fa; margin-top:16px; }
+    .small { font-size:13px; color:var(--muted); line-height:1.35; }
+    .micro { font-size:11px; color:var(--muted); line-height:1.3; }
+    .accent-word { color:#fff; text-shadow:0 0 24px rgba(76,201,240,.25); }
+    .gold { color: var(--accent-2); }
+    .panel, .card, .metric, .phase, .step, .button, .row, .cert-row { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 18px 56px rgba(0,0,0,.22); backdrop-filter: blur(12px); }
+    .panel { padding:16px; }
+    .card { padding:15px; }
+    .visual { position:relative; overflow:hidden; border:1px solid var(--line); border-radius:20px; background:#0d141d; box-shadow:var(--shadow); }
+    .visual::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(145deg, rgba(255,255,255,.10), transparent 38%, rgba(76,201,240,.06)); }
+    .hero-img { position:absolute; inset:0; opacity:.80; }
+    .hero-shade { position:absolute; inset:0; background:linear-gradient(90deg, rgba(7,10,15,.94), rgba(7,10,15,.64), rgba(7,10,15,.16)); }
+    .hero-copy { position:relative; z-index:2; width:780px; padding-top:74px; }
+    .footer { position:absolute; left:40px; bottom:20px; font-size:12px; color:rgba(255,255,255,.44); }
+    .chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+    .button { display:inline-flex; align-items:center; gap:8px; padding:9px 13px; color:#eaf6fd; font-size:13px; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background-color .18s ease; cursor:default; }
+    .button::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px rgba(76,201,240,.52); }
+    .button:hover, .card:hover, .panel:hover, .step:hover { border-color:rgba(76,201,240,.65); background-color:rgba(76,201,240,.115); box-shadow:0 0 0 1px rgba(76,201,240,.26), 0 0 26px rgba(76,201,240,.18), 0 24px 78px rgba(76,201,240,.12); transform: translateY(-2px); }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+    .split { display:grid; grid-template-columns:.98fr 1.02fr; gap:22px; align-items:center; }
+    .split.left { grid-template-columns:1.12fr .88fr; }
+    .flow { display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:stretch; }
+    .connector { height:1px; background:linear-gradient(90deg, transparent, var(--accent), transparent); margin:8px 0; opacity:.7; }
+    .module-map { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:12px; }
+    .module { padding:15px; border-radius:14px; background:rgba(255,255,255,.06); border:1px solid var(--line); min-height:124px; }
+    .module b { display:block; font-size:16px; margin-bottom:7px; color:#fff; }
+    .module span { display:block; font-size:13px; color:var(--muted); line-height:1.32; }
+    .table { display:grid; gap:8px; margin-top:12px; }
+    .row { display:grid; grid-template-columns:.9fr 1.35fr .75fr; gap:10px; padding:9px 12px; align-items:center; }
+    .row span { font-size:13px; color:var(--text); }
+    .row.head span { color:#fff; font-weight:700; }
+    .metric-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:12px 0 15px; }
+    .metric { padding:14px; }
+    .metric strong { display:block; color:var(--accent-2); font-size:27px; line-height:1; margin-bottom:7px; letter-spacing:-.035em; }
+    .metric span { font-size:12px; color:var(--muted); }
+    .timeline { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+    .phase { min-height:250px; padding:13px; border-top:3px solid rgba(76,201,240,.75); }
+    .phase b { display:block; font-size:15px; margin-bottom:8px; color:#fff; }
+    .phase p { font-size:14px; }
+    .phase .tags { margin-top:10px; display:grid; gap:5px; }
+    .phase .tags span { font-size:12px; color:#dce8f2; padding:5px 7px; border-radius:8px; background:rgba(255,255,255,.075); }
+    .cert-layout { display:grid; grid-template-columns:1.05fr .95fr; gap:18px; align-items:center; }
+    .cert-ui { display:grid; gap:9px; }
+    .cert-row { display:grid; grid-template-columns:28px 1fr auto; align-items:center; gap:9px; padding:10px 12px; }
+    .status-ok { color:var(--ok); font-weight:800; }
+    .status-warn { color:var(--warn); font-weight:800; }
+    .status-stop { color:var(--danger); font-weight:800; }
+    .steps { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px; }
+    .step { min-height:178px; padding:13px; }
+    .step .num { color:var(--accent-2); font-size:18px; font-weight:800; margin-bottom:8px; }
+    .contacts { display:grid; grid-template-columns:1.05fr .95fr; gap:18px; align-items:end; }
+    .parallax { transform-style:preserve-3d; transition: transform .18s ease, box-shadow .18s ease; will-change: transform; }
+    @media screen and (max-width:900px) {
+      .slide { width:100%; height:auto; min-height:100vh; padding:22px; }
+      h1 { font-size:40px; }
+      h2 { font-size:25px; }
+      p,li { font-size:15px; }
+      .lead { font-size:19px; }
+      .grid2,.grid3,.grid4,.split,.split.left,.flow,.module-map,.metric-row,.timeline,.cert-layout,.steps,.contacts { grid-template-columns:1fr; }
+      .hero-copy { width:auto; padding-top:42px; }
+      .visual[style] { height:auto !important; min-height:300px; }
+    }
+    @media print {
+      @page { size:16in 9in; margin:0; }
+      .slide { width:16in; height:9in; margin:0; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+      .parallax { transform:none !important; }
+      .button:hover,.card:hover,.panel:hover,.step:hover { transform:none; }
+    }
+  </style>
+</head>
+<body>
+  <section class="slide" data-n="01">
+    <div class="hero-img parallax"><img src="./assets/vtb-realistic.png" alt="Финал проекта Аватар у ВТБ Арены"></div>
+    <div class="hero-shade"></div>
+    <div class="hero-copy">
+      <div class="kicker">Реалистичная версия</div>
+      <h1><span class="accent-word">Аватар</span>: регистрация лица, цифровой образ, конкурс, стадион</h1>
+      <p class="lead">Проект начинается как доверенная точка в торговом центре и заканчивается годовым финалом на ВТБ Арене.</p>
+      <div class="chips"><span class="button">кабинка</span><span class="button">сертификат</span><span class="button">соцсеть</span><span class="button">финал</span></div>
+    </div>
+    <div class="footer">Проектная презентация для обсуждения с участниками</div>
+  </section>
+
+  <section class="slide" data-n="02">
+    <div class="kicker">Смысл проекта</div>
+    <h2>Мы создаем понятный путь: человек регистрирует лицо, получает подтверждение, публикует аватар-контент и участвует в отборе</h2>
+    <div class="flow">
+      <div class="visual parallax" style="height:510px"><img src="./assets/booth-realistic.png" alt="Реалистичная кабинка Аватар в ТЦ"></div>
+      <div>
+        <div class="panel"><h3>1. Вход через физическую точку</h3><p>Кабинка делает проект видимым и понятным: человек сам приходит, видит устройство, проходит съемку и получает документ регистрации.</p></div>
+        <div class="connector"></div>
+        <div class="panel"><h3>2. Защищенный цифровой образ</h3><p>Публично показывается не «сырое лицо», а созданный аватар и статус участия. Закрытая часть хранит consent, ID и журнал.</p></div>
+        <div class="connector"></div>
+        <div class="panel"><h3>3. Годовая публичная механика</h3><p>Видео, рейтинг, конкурсные этапы и финал дают проекту движение, а не формат разовой промо-акции.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="03">
+    <div class="kicker">Кабинка</div>
+    <div class="split left">
+      <div>
+        <h2>Кабинка должна выглядеть как надежная регистрационная точка, а не как аттракцион</h2>
+        <div class="grid2">
+          <div class="panel"><h3>Снаружи</h3><ul><li>короткое объяснение проекта</li><li>пример аватара на экране</li><li>видимый статус приватности</li><li>понятная кнопка старта</li></ul></div>
+          <div class="panel"><h3>Внутри</h3><ul><li>камера на боковой стене</li><li>контролируемый свет</li><li>подсказки по позам</li><li>повтор съемки при ошибке</li></ul></div>
+        </div>
+        <div class="module-map">
+          <div class="module"><b>Фото</b><span>фас, профиль, 3/4</span></div><div class="module"><b>Согласие</b><span>экран + версия текста</span></div><div class="module"><b>Контроль</b><span>качество и liveness</span></div><div class="module"><b>Выдача</b><span>PDF/QR/печать</span></div>
+        </div>
+      </div>
+      <div class="visual parallax" style="height:535px"><img src="./assets/booth-realistic.png" alt="Кабинка регистрации лица"></div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="04">
+    <div class="kicker">Техническая архитектура</div>
+    <h2>Стек лучше показывать как карту модулей: что именно нужно собрать и чем проверять готовность</h2>
+    <div class="module-map" style="grid-template-columns:repeat(4,1fr)">
+      <div class="module"><b>Киоск</b><span>экран, подсказки, съемка, повтор</span></div>
+      <div class="module"><b>Consent</b><span>согласие, версия, отзыв</span></div>
+      <div class="module"><b>Certificate</b><span>ID, QR, статус, PDF</span></div>
+      <div class="module"><b>Profile</b><span>публичная страница участника</span></div>
+      <div class="module"><b>Media</b><span>ролики, превью, хранение</span></div>
+      <div class="module"><b>Contest</b><span>раунды, рейтинг, shortlist</span></div>
+      <div class="module"><b>Admin</b><span>журнал, задачи, комментарии</span></div>
+      <div class="module"><b>Evidence</b><span>скрины, логи, тесты, сценарии</span></div>
+    </div>
+    <div class="table">
+      <div class="row head"><span>Модуль</span><span>Что доказываем в MVP</span><span>Проверка</span></div>
+      <div class="row"><span>Киоск</span><span>пользователь проходит регистрацию без ручного объяснения</span><span>видео</span></div>
+      <div class="row"><span>Сертификат</span><span>QR открывает статус и список приложенных материалов</span><span>live check</span></div>
+      <div class="row"><span>Соцсеть</span><span>профиль и первый ролик доступны по ссылке</span><span>скрин</span></div>
+      <div class="row"><span>Конкурс</span><span>оценка и shortlist сохраняются в журнале</span><span>лог</span></div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="05">
+    <div class="kicker">Сертификат</div>
+    <div class="cert-layout">
+      <div class="visual parallax" style="height:520px"><img src="./assets/certificate-realistic.png" alt="Сертификат регистрации лица и реестр"></div>
+      <div>
+        <h2>Сертификат должен выглядеть как подтверждение регистрации, а не как красивая картинка</h2>
+        <div class="cert-ui">
+          <div class="cert-row"><span class="status-ok">✓</span><span>AV-2026-000001 · активен</span><span class="micro">QR OK</span></div>
+          <div class="cert-row"><span class="status-warn">•</span><span>AV-2026-000002 · ожидает проверки</span><span class="micro">review</span></div>
+          <div class="cert-row"><span class="status-stop">×</span><span>AV-2026-000003 · отозван</span><span class="micro">revoked</span></div>
+          <div class="cert-row"><span class="status-warn">!</span><span>AV-2026-000004 · повторить фото</span><span class="micro">quality</span></div>
+        </div>
+        <div class="panel" style="margin-top:12px"><h3>Поля документа</h3><p>ID, дата и место регистрации, версия согласия, фото-набор, срок действия, QR-проверка, статус отзыва, ссылка на журнал.</p></div>
+        <p class="small" style="margin-top:10px">Юридический ориентир для дальнейшей проверки: 152-ФЗ «О персональных данных», статья 11 про биометрические персональные данные.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="06">
+    <div class="kicker">Социальная сеть</div>
+    <div class="visual parallax" style="height:415px"><img src="./assets/social-realistic.png" alt="Реалистичный интерфейс социальной сети Аватар"></div>
+    <div class="grid3" style="margin-top:14px">
+      <div class="card"><h3>Профиль участника</h3><p>Аватар, статус сертификата, история роликов, конкурсный статус.</p></div>
+      <div class="card"><h3>Лента роликов</h3><p>Вертикальные видео, реакции, комментарии, отметка раунда.</p></div>
+      <div class="card"><h3>Конкурсный контур</h3><p>Задания, дедлайны, рейтинг, shortlist и модерация.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="07">
+    <div class="kicker">Годовая механика</div>
+    <h2>Цифры нужны не только по датам: они задают масштаб пилота и критерии роста</h2>
+    <div class="metric-row">
+      <div class="metric"><strong>12 мес.</strong><span>сезон от 1 мая 2026 до мая 2027</span></div>
+      <div class="metric"><strong>1→3</strong><span>кабинка: пилот, затем расширение</span></div>
+      <div class="metric"><strong>100+</strong><span>первые зарегистрированные участники</span></div>
+      <div class="metric"><strong>5–10</strong><span>финальных номеров для шоу</span></div>
+    </div>
+    <div class="timeline">
+      <div class="phase"><b>Май-июнь 2026</b><p>Пилот кабинки и сертификата.</p><div class="tags"><span>10-30 тестов</span><span>1 рабочий поток</span><span>DoD: регистрация</span></div></div>
+      <div class="phase"><b>Июль-октябрь</b><p>Соцсеть и первые ролики.</p><div class="tags"><span>100+ профилей</span><span>3-5 челленджей</span><span>DoD: лента</span></div></div>
+      <div class="phase"><b>Ноябрь-февраль</b><p>Раунды конкурса и рейтинг.</p><div class="tags"><span>3 раунда</span><span>shortlist 20</span><span>DoD: отбор</span></div></div>
+      <div class="phase"><b>Март-апрель</b><p>Подготовка шоу и партнеров.</p><div class="tags"><span>5-10 номеров</span><span>пакет спонсора</span><span>DoD: прогон</span></div></div>
+      <div class="phase"><b>Май 2027</b><p>Финал и запуск следующего сезона.</p><div class="tags"><span>ВТБ Арена</span><span>победитель</span><span>DoD: event</span></div></div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="08">
+    <div class="kicker">Финал</div>
+    <div class="split">
+      <div class="visual parallax" style="height:530px"><img src="./assets/vtb-realistic.png" alt="ВТБ Арена финал Аватар"></div>
+      <div>
+        <h2>Финал на ВТБ Арене должен выглядеть как технологичное событие, а не как абстрактная сцена</h2>
+        <div class="grid2">
+          <div class="panel"><h3>Площадка</h3><p>ВТБ Арена, Ленинградский проспект, 36. Стадионный формат — до 33 тыс. зрителей.</p></div>
+          <div class="panel"><h3>Сценарий</h3><p>Выступления аватаров, live-голосование, партнерские блоки, награждение.</p></div>
+        </div>
+        <div class="panel" style="margin-top:12px"><h3>Что получает спонсор</h3><ul><li>годовой сюжет вместо разового размещения</li><li>публичный рейтинг и финал</li><li>контент до, во время и после события</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="09">
+    <div class="kicker">Работа команды</div>
+    <h2>Чтобы проект не распылялся, у команды должен быть короткий операционный контур</h2>
+    <div class="grid4">
+      <div class="card"><h3>Участники</h3><p>Сергеон, Алексей, Игорь, Иван. Роли пока не подписываем публично.</p></div>
+      <div class="card"><h3>Журнал</h3><p>Что сделано, что проверено, что не прошло, что решить на встрече.</p></div>
+      <div class="card"><h3>Комментарии</h3><p>Обратная связь участников сохраняется, а не теряется в переписках.</p></div>
+      <div class="card"><h3>Материалы</h3><p>Версии презентации, картинки, PDF, ссылки, задачи и решения.</p></div>
+    </div>
+    <div class="table">
+      <div class="row head"><span>Контур</span><span>Что фиксируем</span><span>Evidence</span></div>
+      <div class="row"><span>Продукт</span><span>цепочка: кабинка → сертификат → профиль → ролик</span><span>скрин/видео</span></div>
+      <div class="row"><span>Юридический</span><span>согласие, отзыв, список сертификатов</span><span>чеклист</span></div>
+      <div class="row"><span>Технический</span><span>страницы, формы, хранение, публикация</span><span>лог/test</span></div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="10">
+    <div class="kicker">MVP</div>
+    <h2>Первый MVP должен доказать цепочку на одном участнике, без большой инфраструктуры</h2>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><h3>Регистрация</h3><p>Фото-набор, согласие, ID.</p><p class="micro">evidence: видео</p></div>
+      <div class="step"><div class="num">02</div><h3>Сертификат</h3><p>PDF/QR, статус, реестр.</p><p class="micro">evidence: live check</p></div>
+      <div class="step"><div class="num">03</div><h3>Профиль</h3><p>Страница участника и аватар.</p><p class="micro">evidence: ссылка</p></div>
+      <div class="step"><div class="num">04</div><h3>Ролик</h3><p>Первый видео-пост в ленте.</p><p class="micro">evidence: скрин</p></div>
+      <div class="step"><div class="num">05</div><h3>Отбор</h3><p>Оценка и shortlist в журнале.</p><p class="micro">evidence: лог</p></div>
+    </div>
+    <div class="panel" style="margin-top:14px"><h3>Минимальная демонстрация</h3><p>Один человек проходит регистрацию, получает сертификат, появляется в профиле, публикует ролик и попадает в тестовый конкурсный этап.</p></div>
+  </section>
+
+  <section class="slide" data-n="11">
+    <div class="kicker">Контроль рисков</div>
+    <h2>Риски закрываются отдельными состояниями и журналом, а не обещанием «мы аккуратно»</h2>
+    <div class="grid3">
+      <div class="panel"><h3>Согласие</h3><p>Отдельный экран согласия, версия текста, срок действия, отзыв.</p><span class="button">152-ФЗ / ст. 11</span></div>
+      <div class="panel"><h3>Качество лица</h3><p>Повтор съемки, контроль света, liveness, ручная проверка спорных случаев.</p><span class="button">quality gate</span></div>
+      <div class="panel"><h3>Публичность</h3><p>Разделяем закрытые регистрационные данные и публичный образ аватара.</p><span class="button">scope</span></div>
+    </div>
+    <div class="grid2" style="margin-top:14px">
+      <div class="panel"><h3>Не делаем</h3><ul><li>не публикуем документы участника</li><li>не смешиваем разные цели согласия</li><li>не допускаем участие без статуса сертификата</li></ul></div>
+      <div class="panel"><h3>Делаем</h3><ul><li>QR-проверка статуса</li><li>реестр сертификатов</li><li>журнал создания/отзыва</li><li>юридический чеклист перед пилотом</li></ul></div>
+    </div>
+  </section>
+
+  <section class="slide" data-n="12">
+    <div class="hero-img parallax"><img src="./assets/booth-realistic.png" alt="Кабинка проекта Аватар"></div>
+    <div class="hero-shade"></div>
+    <div class="hero-copy contacts">
+      <div>
+        <div class="kicker">Итог</div>
+        <h1>Сначала доверие. Потом шоу.</h1>
+        <p class="lead">Если регистрация, сертификат и конкурсная механика сделаны спокойно и понятно, финал на стадионе становится естественным завершением сезона.</p>
+      </div>
+      <div class="panel">
+        <h3>Контакты / шаблон</h3>
+        <p><b>Организатор:</b> ООО «__________»</p>
+        <p><b>Проект:</b> «Аватар»</p>
+        <p><b>Email:</b> avatar@__________.ru</p>
+        <p><b>Телефон:</b> +7 (___) ___-__-__</p>
+        <p><b>Материалы:</b> web, PDF, журнал решений, список задач</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const canHover = matchMedia('(hover: hover)').matches;
+    if (canHover) {
+      document.querySelectorAll('.slide').forEach((slide) => {
+        const targets = [...slide.querySelectorAll('.parallax')];
+        slide.addEventListener('mousemove', (event) => {
+          const rect = slide.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          targets.forEach((target, index) => {
+            const depth = index % 2 === 0 ? 12 : -8;
+            target.style.transform = `translate3d(${x * depth}px, ${y * depth}px, 0) scale(1.01)`;
+          });
+        });
+        slide.addEventListener('mouseleave', () => targets.forEach((target) => target.style.transform = 'translate3d(0,0,0) scale(1)'));
+      });
+    }
+  </script>
+</body>
+</html>
