@@ -2,7 +2,8 @@
 
 Presentation pages for project "Avatar".
 
-- Open `index.html` for overview.
-- Navigation includes pages 1-8.
-- Premium deck: `premium-deck/index.html`
-- PDF: `premium-deck/avatar-project-presentation.pdf`
+- Canonical public deck: `realistic-deck/index.html`
+- Canonical PDF: `realistic-deck/avatar-realistic-presentation.pdf`
+- Audit/backlog page: `audit-backlog.html`
+- Open `index.html` for overview and navigation.
+- Archive decks: `premium-deck/index.html`, `colorful-deck/index.html`

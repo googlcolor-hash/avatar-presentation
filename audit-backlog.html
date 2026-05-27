@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аватар — аудит и backlog</title>
+  <style>
+    :root{--bg:#111821;--panel:#182331;--panel2:#202d3d;--text:#e5eef8;--muted:#9cb0c5;--line:#31445a;--accent:#4cc9f0;--gold:#c9a86a;--ok:#7ee2a8;--warn:#f0c36a;--bad:#f07c7c}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0a0f16,#121a24);color:var(--text);font-family:Segoe UI,Tahoma,sans-serif}.wrap{max-width:1120px;margin:0 auto;padding:18px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.btn{font-size:13px;padding:8px 11px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);text-decoration:none}.btn.primary{border-color:var(--accent);background:#20354a}h1{font-size:30px;margin:0 0 8px;letter-spacing:-.03em}h2{font-size:18px;margin:0 0 10px}h3{font-size:15px;margin:0 0 7px}.sub{color:var(--muted);font-size:15px;line-height:1.45;max-width:860px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.card,.risk,.next{background:rgba(24,35,49,.86);border:1px solid var(--line);border-radius:14px;padding:14px}.risk{display:grid;grid-template-columns:34px 1fr;gap:10px}.num{width:28px;height:28px;border-radius:9px;background:#263b52;color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}.tag{display:inline-block;font-size:11px;color:#071018;background:var(--warn);border-radius:999px;padding:4px 8px;margin:5px 6px 0 0}.tag.ok{background:var(--ok)}.tag.bad{background:var(--bad)}p,li{font-size:14px;line-height:1.42;color:#d6e2ee}ul{margin:0;padding-left:18px}li{margin:5px 0}.matrix{display:grid;gap:8px;margin-top:10px}.row{display:grid;grid-template-columns:.85fr 1.25fr .9fr;gap:8px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.045);padding:9px}.row span{font-size:13px;color:#d6e2ee}.row.head span{font-weight:700;color:#fff}.status{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.status .card{min-height:120px}.big{font-size:28px;color:var(--gold);font-weight:800;line-height:1;margin-bottom:8px}.nexts{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}.next{min-height:155px}.foot{color:var(--muted);font-size:12px;margin-top:16px}@media(max-width:850px){.grid,.status,.nexts,.row{grid-template-columns:1fr}.wrap{padding:14px}h1{font-size:25px}}
+  </style>
+</head>
+<body><main class="wrap">
+  <nav class="nav"><a class="btn" href="./index.html">Обзор</a><a class="btn primary" href="./realistic-deck/">Каноническая презентация</a><a class="btn" href="./realistic-deck/avatar-realistic-presentation.pdf">PDF</a><a class="btn" href="./page-8-kabinka-plan.html">Кабинка</a></nav>
+  <h1>Аудит и backlog проекта «Аватар»</h1>
+  <p class="sub">Статус на 27 мая 2026: реалистичная презентация зафиксирована как каноническая concept-версия. Аудит показывает: идея сильная, но пакет еще не готов для партнера/площадки/спонсора без доказательств доверия, юридики, экономики и MVP-сценария.</p>
+
+  <section class="status">
+    <article class="card"><div class="big">DONE</div><h2>Что уже принято</h2><p>Цепочка продукта: кабинка -> сертификат -> профиль -> ролик -> конкурс -> финал. Реалистичная визуальная версия опубликована.</p></article>
+    <article class="card"><div class="big">NOT DONE</div><h2>Что еще не доказано</h2><p>Ценность за биометрию, юридическая модель, экономика, антифрод, эксплуатация кабинки, venue-gates для финала.</p></article>
+    <article class="card"><div class="big">NEXT</div><h2>Следующий фокус</h2><p>Один реальный end-to-end сценарий на участнике и пакет доверия: legal pack, экономика, roadmap от текущей даты.</p></article>
+  </section>
+
+  <section class="grid">
+    <article class="risk"><div class="num">1</div><div><h3>Ценность за биометрию</h3><p>Почему человек согласится зарегистрировать лицо сейчас?</p><span class="tag bad">риск доверия</span><span class="tag">evidence: воронка пилота</span></div></article>
+    <article class="risk"><div class="num">2</div><div><h3>Юридическая модель</h3><p>Кто оператор ПД, какие цели, срок хранения, отзыв и удаление?</p><span class="tag bad">legal pack</span><span class="tag">152-ФЗ / ст. 11</span></div></article>
+    <article class="risk"><div class="num">3</div><div><h3>Антифрод конкурса</h3><p>Как ловим чужие лица, дубли, дипфейки, накрутку рейтинга?</p><span class="tag">threat model</span><span class="tag">red-team</span></div></article>
+    <article class="risk"><div class="num">4</div><div><h3>Кабинка как операция</h3><p>Нужны SOP, приватность, сеть, ошибки, очередь, поддержка и 20+ прогонов.</p><span class="tag">SOP</span><span class="tag">live run</span></div></article>
+    <article class="risk"><div class="num">5</div><div><h3>Соцсеть как отдельный риск</h3><p>Почему участник возвращается в нашу ленту, а не уходит в существующие платформы?</p><span class="tag">core wedge</span><span class="tag">retention</span></div></article>
+    <article class="risk"><div class="num">6</div><div><h3>Миноры и UGC</h3><p>Возрастные правила, согласие родителей, права на аватар/ролики, takedown.</p><span class="tag bad">policy</span><span class="tag">moderation SLA</span></div></article>
+    <article class="risk"><div class="num">7</div><div><h3>Экономика</h3><p>Сколько стоит кабинка, регистрация, активный участник, сезон и финал?</p><span class="tag">unit economics</span><span class="tag">sponsor package</span></div></article>
+    <article class="risk"><div class="num">8</div><div><h3>ВТБ Арена и fallback</h3><p>Какие KPI дают право обещать большую площадку, и что делаем при меньшем масштабе?</p><span class="tag">venue gates</span><span class="tag">A/B/C</span></div></article>
+  </section>
+
+  <section class="card" style="margin-top:12px">
+    <h2>Backlog до следующей встречи</h2>
+    <div class="matrix">
+      <div class="row head"><span>Задача</span><span>Что делаем</span><span>Definition of Done</span></div>
+      <div class="row"><span>Каноническая версия</span><span>Оставить realistic-deck основной, архивные версии не выдавать за финальные</span><span>root + README ведут в realistic</span></div>
+      <div class="row"><span>Legal pack v1</span><span>Оператор, цели, согласие, отзыв, хранение, удаление, миноры, UGC</span><span>черновик для юриста</span></div>
+      <div class="row"><span>MVP proof</span><span>1 участник проходит регистрацию, сертификат, профиль, первый пост, запись в журнал</span><span>скрин/лог/live action</span></div>
+      <div class="row"><span>Roadmap reset</span><span>Отразить факты с 1 мая по 27 мая 2026 и новые gates</span><span>план без устаревших обещаний</span></div>
+      <div class="row"><span>Экономика + venue</span><span>CAPEX/OPEX, цена регистрации, спонсорские пакеты, ВТБ/fallback</span><span>1 таблица + 1 страница gates</span></div>
+    </div>
+  </section>
+
+  <section class="nexts">
+    <article class="next"><h3>1. Legal</h3><p>Не финальный юрдокумент, а список вопросов и черновиков для проверки.</p></article>
+    <article class="next"><h3>2. MVP</h3><p>Один участник, одна цепочка, один набор evidence.</p></article>
+    <article class="next"><h3>3. Экономика</h3><p>Пилот, сезон, приз, финал, спонсорский смысл.</p></article>
+    <article class="next"><h3>4. Кабинка</h3><p>SOP, аварийные сценарии, требования ТЦ.</p></article>
+    <article class="next"><h3>5. Финал</h3><p>ВТБ как цель, fallback как управление риском.</p></article>
+  </section>
+  <p class="foot">Рабочая страница аудита. Не является юридическим заключением или коммерческим предложением.</p>
+</main></body></html>
